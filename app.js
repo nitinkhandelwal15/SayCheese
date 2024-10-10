@@ -34,10 +34,30 @@ const Header = ()=>{
 
 };
 
+const RestaurantCard = ()=> {
+    return (
+        <div className="res-card">
+            <h3> Meghana Foods</h3>
+        </div>
+    )
+}
+
+const Body = () => {
+    return (
+        <div className="body">
+            <div className="search"> Search</div>
+            <div className="res-container">
+                <RestaurantCard/>
+            </div>
+        </div>
+    )
+}
+
 const AppLayout = ()=>{
     return (
         <div className="app">
             <Header />
+            <Body/>
         </div>
     )
 };
