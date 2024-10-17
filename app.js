@@ -34,15 +34,16 @@ const Header = ()=>{
 
 };
 
-const RestaurantCard = ()=> {
+
+const RestaurantCard = ({resName, cuisine})=> {
     return (
         <div className="res-card" style ={{backgroundColor:"#f0f2f5"}}>
             <img alt="res-logo" className="res-logo" src="https://img.freepik.com/premium-photo/indian-hindu-veg-thali-also-known-as-food-platter-is-complete-lunch-dinner-meal-closeup-selective-focus_466689-9090.jpg"
             />
-            <h2> Meghana Foods</h2>
+            <h2>{resName}</h2>
             <h3>4.4 stars</h3>
             <h3>35-40 mins</h3>
-            <h4>North Indian, Chinese, Asian</h4>
+            <h4>{cuisine}</h4>
         </div>
     );
 };
@@ -52,7 +53,7 @@ const Body = () => {
         <div className="body">
             <div className="search"> Search</div>
             <div className="res-container">
-                <RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/>
+                <RestaurantCard resName="Meghana Foods" cuisine="North Indian, Chinese, Asian"/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/><RestaurantCard/>
             </div>
         </div>
     )
