@@ -40,7 +40,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: 0 10%;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .res-card {
@@ -59,4 +59,9 @@
   height: 200px;
   border: 1px;
   border-radius: 5%;
+}
+
+.filter-btn {
+  cursor: pointer;
+  margin: 5px;
 }
