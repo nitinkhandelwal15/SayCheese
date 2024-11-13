@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import resObj from "../utils/mockdata";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   //   const [restaurantList, setrestaurantList] = useState([
@@ -90,7 +91,7 @@ const Body = () => {
   //     },
   //   ]);
 
-  const [restaurantList, setrestaurantList] = useState(resObj);
+  const [restaurantList, setrestaurantList] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -107,6 +108,11 @@ const Body = () => {
       json?.data.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  if (restaurantList.length === 0) {
+    return <Shimmer />;
+    //return <h1>Loading...</h1>;
+  }
 
   let restaurantList2 = [
     {
