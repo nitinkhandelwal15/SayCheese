@@ -1,6 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 import resObj from "../utils/mockdata";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Body = () => {
   //   const [restaurantList, setrestaurantList] = useState([
@@ -91,6 +91,22 @@ const Body = () => {
   //   ]);
 
   const [restaurantList, setrestaurantList] = useState(resObj);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+
+    const json = await data.json();
+    console.log(json);
+    setrestaurantList(
+      json?.data.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
 
   let restaurantList2 = [
     {
