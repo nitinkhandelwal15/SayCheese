@@ -1,17 +1,27 @@
 /* Header css*/
+.root {
+  margin: 0;
+  padding: 0;
+}
 
 .header {
   display: flex;
   justify-content: space-between;
-  border: 1px solid orange;
-  border-radius: 10px;
+  border: 0px solid orange;
+  border-radius: 5px;
+  position: sticky;
+  margin: 0px !important;
+  top: 0;
+  background-color: wheat;
 }
 .logo-container {
-  padding-left: 5px;
-  margin: 5px;
+  padding-left: 3px;
+  margin: 3px;
 }
 .logo {
-  width: 150px;
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
 }
 .nav-items {
   margin: 5px;
@@ -19,15 +29,15 @@
 .nav-items > ul {
   display: flex;
   align-items: center;
-  font-size: 24px;
+  font-size: 20px;
 }
 .nav-items > ul > li {
-  padding: 0px 20px;
-  margin: 10px;
+  padding: 0px 10px;
+  margin: none;
   list-style: none;
 }
 .nav-items > ul > li > .cart-logo {
-  width: 100px;
+  width: 50px;
 }
 
 /* Body CSS */
@@ -41,7 +51,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: 0 10%;
-  justify-content: flex-start;
+  justify-content: space-evenly;
 }
 
 .res-card {
