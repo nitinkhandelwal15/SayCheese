@@ -29,16 +29,19 @@ const RestaurantMenu = () => {
 
   const { name, avgRating, cuisines, costForTwoMessage, id } =
     resInfo?.cards[2]?.card?.card?.info || {};
-  // Using {} as a fallback value makes sure your code handles the case where the object you're trying to destructure might be undefined or null. It helps to prevent runtime errors and makes your code more robust when dealing with data that might be incomplete or missing.
-
-  //   const { name, avgRating, cuisines, costForTwoMessage, id } =
-  //     resInfo?.cards[2]?.card?.card?.info || {};
 
   const { itemCards } =
     resInfo.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-      ?.card || {};
+      ?.card === undefined
+      ? resInfo.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
+          ?.card
+      : resInfo.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+          ?.card;
 
-  console.log(itemCards);
+  // Check if itemCards is undefined or null, and fallback to an empty array
+  const safeItemCards = itemCards || [];
+
+  console.log(safeItemCards);
 
   return (
     <div className="menu">
@@ -49,12 +52,8 @@ const RestaurantMenu = () => {
       </p>
       <h2>{avgRating}</h2>
 
-      {/* <h1>{resInfo.cards[2].card.card.info.name}</h1>
-      <h2>{resInfo.cards[2].card.card.info.avgRating}</h2>
-      <h3>{resInfo.cards[2].card.card.info.cuisines.join(", ")}</h3> */}
-
       <ul>
-        {itemCards.map((item) => (
+        {safeItemCards.map((item) => (
           <li key={item.card.info.id}>
             {item.card.info.name} -{" "}
             {item.card.info.defaultPrice / 100 ||
