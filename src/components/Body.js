@@ -3,6 +3,7 @@ import resObj from "../utils/mockdata";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   //   const [restaurantList, setrestaurantList] = useState([
@@ -117,97 +118,101 @@ const Body = () => {
     );
   };
 
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false)
+    return <h1>OOPS!! Offline, check the internet connection!</h1>;
+
   // if (restaurantList.length === 0) {
   //   return <Shimmer />;
   //   //return <h1>Loading...</h1>;
   // }
-
-  let restaurantList2 = [
-    {
-      info: {
-        id: "588619",
-        name: "KFC",
-        cloudinaryImageId:
-          "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/4a509cf1-ea35-497b-9813-59145c5007c9_588619.JPG",
-        locality: "Brigade Road",
-        areaName: "Central Bangalore",
-        costForTwo: "₹400 for two",
-        cuisines: ["Burgers", "Fast Food", "Rolls & Wraps"],
-        avgRating: 3.4,
-        avgRatingString: "3.4",
-        totalRatingsString: "1.9K+",
-        sla: {
-          deliveryTime: 22,
-          lastMileTravel: 2.3,
-          serviceability: "SERVICEABLE",
-          slaString: "20-25 mins",
-        },
-      },
-    },
-    {
-      info: {
-        id: "588620",
-        name: "Dominos",
-        cloudinaryImageId:
-          "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/4a509cf1-ea35-497b-9813-59145c5007c9_588619.JPG",
-        locality: "Brigade Road",
-        areaName: "Central Bangalore",
-        costForTwo: "₹400 for two",
-        cuisines: ["Burgers", "Fast Food", "Rolls & Wraps"],
-        avgRating: 4.4,
-        avgRatingString: "4.4",
-        totalRatingsString: "1.9K+",
-        sla: {
-          deliveryTime: 22,
-          lastMileTravel: 2.3,
-          serviceability: "SERVICEABLE",
-          slaString: "20-25 mins",
-        },
-      },
-    },
-    {
-      info: {
-        id: "588621",
-        name: "Burger King",
-        cloudinaryImageId:
-          "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/4a509cf1-ea35-497b-9813-59145c5007c9_588619.JPG",
-        locality: "Brigade Road",
-        areaName: "Central Bangalore",
-        costForTwo: "₹400 for two",
-        cuisines: ["Burgers", "Fast Food", "Rolls & Wraps"],
-        avgRating: 2.4,
-        avgRatingString: "2.4",
-        totalRatingsString: "1.9K+",
-        sla: {
-          deliveryTime: 22,
-          lastMileTravel: 2.3,
-          serviceability: "SERVICEABLE",
-          slaString: "20-25 mins",
-        },
-      },
-    },
-    {
-      info: {
-        id: "588622",
-        name: "McD",
-        cloudinaryImageId:
-          "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/4a509cf1-ea35-497b-9813-59145c5007c9_588619.JPG",
-        locality: "Brigade Road",
-        areaName: "Central Bangalore",
-        costForTwo: "₹400 for two",
-        cuisines: ["Burgers", "Fast Food", "Rolls & Wraps"],
-        avgRating: 4.4,
-        avgRatingString: "4.4",
-        totalRatingsString: "1.9K+",
-        sla: {
-          deliveryTime: 22,
-          lastMileTravel: 2.3,
-          serviceability: "SERVICEABLE",
-          slaString: "20-25 mins",
-        },
-      },
-    },
-  ];
+  //DEMO DATA
+  // let restaurantList2 = [
+  //   {
+  //     info: {
+  //       id: "588619",
+  //       name: "KFC",
+  //       cloudinaryImageId:
+  //         "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/4a509cf1-ea35-497b-9813-59145c5007c9_588619.JPG",
+  //       locality: "Brigade Road",
+  //       areaName: "Central Bangalore",
+  //       costForTwo: "₹400 for two",
+  //       cuisines: ["Burgers", "Fast Food", "Rolls & Wraps"],
+  //       avgRating: 3.4,
+  //       avgRatingString: "3.4",
+  //       totalRatingsString: "1.9K+",
+  //       sla: {
+  //         deliveryTime: 22,
+  //         lastMileTravel: 2.3,
+  //         serviceability: "SERVICEABLE",
+  //         slaString: "20-25 mins",
+  //       },
+  //     },
+  //   },
+  //   {
+  //     info: {
+  //       id: "588620",
+  //       name: "Dominos",
+  //       cloudinaryImageId:
+  //         "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/4a509cf1-ea35-497b-9813-59145c5007c9_588619.JPG",
+  //       locality: "Brigade Road",
+  //       areaName: "Central Bangalore",
+  //       costForTwo: "₹400 for two",
+  //       cuisines: ["Burgers", "Fast Food", "Rolls & Wraps"],
+  //       avgRating: 4.4,
+  //       avgRatingString: "4.4",
+  //       totalRatingsString: "1.9K+",
+  //       sla: {
+  //         deliveryTime: 22,
+  //         lastMileTravel: 2.3,
+  //         serviceability: "SERVICEABLE",
+  //         slaString: "20-25 mins",
+  //       },
+  //     },
+  //   },
+  //   {
+  //     info: {
+  //       id: "588621",
+  //       name: "Burger King",
+  //       cloudinaryImageId:
+  //         "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/4a509cf1-ea35-497b-9813-59145c5007c9_588619.JPG",
+  //       locality: "Brigade Road",
+  //       areaName: "Central Bangalore",
+  //       costForTwo: "₹400 for two",
+  //       cuisines: ["Burgers", "Fast Food", "Rolls & Wraps"],
+  //       avgRating: 2.4,
+  //       avgRatingString: "2.4",
+  //       totalRatingsString: "1.9K+",
+  //       sla: {
+  //         deliveryTime: 22,
+  //         lastMileTravel: 2.3,
+  //         serviceability: "SERVICEABLE",
+  //         slaString: "20-25 mins",
+  //       },
+  //     },
+  //   },
+  //   {
+  //     info: {
+  //       id: "588622",
+  //       name: "McD",
+  //       cloudinaryImageId:
+  //         "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/4a509cf1-ea35-497b-9813-59145c5007c9_588619.JPG",
+  //       locality: "Brigade Road",
+  //       areaName: "Central Bangalore",
+  //       costForTwo: "₹400 for two",
+  //       cuisines: ["Burgers", "Fast Food", "Rolls & Wraps"],
+  //       avgRating: 4.4,
+  //       avgRatingString: "4.4",
+  //       totalRatingsString: "1.9K+",
+  //       sla: {
+  //         deliveryTime: 22,
+  //         lastMileTravel: 2.3,
+  //         serviceability: "SERVICEABLE",
+  //         slaString: "20-25 mins",
+  //       },
+  //     },
+  //   },
+  // ];
 
   return restaurantList.length === 0 ? (
     <Shimmer />
