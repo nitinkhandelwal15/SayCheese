@@ -7,35 +7,37 @@ export const Header = () => {
   console.log("header called");
   const onlineStatus = useOnlineStatus();
   return (
-    <div className="header">
+    <div className="flex justify-between  bg-yellow-50 md:bg-orange-100 shadow-lg m-2 rounded-lg sm:bg-green-50">
       <div className="logo-container">
-        <img className="logo" src={LOGO_URL} />
+        <img className="w-40" src={LOGO_URL} />
       </div>
 
-      <div className="nav-items">
-        <ul>
-          <li>Connection : {onlineStatus === true ? "✅" : "🚫"}</li>
+      <div className="nav-items flex items-center">
+        <ul className="flex p-4 m-4">
+          <li className="px-4">
+            Connection : {onlineStatus === true ? "✅" : "🚫"}
+          </li>
 
-          <li>
+          <li className="px-2">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="px-2">
             <a href="/about">About Us</a>
           </li>
-          <li>
+          <li className="px-2">
             <Link to="/contact">Contact</Link>
           </li>
-          <li>
+          <li className="px-2">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li>
+          <li className="px-2">
             <img
-              className="cart-logo"
+              className="w-18"
               src="https://cdn-icons-png.flaticon.com/512/6187/6187760.png"
             />
           </li>
           <button
-            className="login"
+            className="px-2"
             onClick={() => {
               btnNameReact === "login"
                 ? setbtnNameReact("logout")
