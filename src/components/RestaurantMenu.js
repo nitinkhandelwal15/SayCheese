@@ -3,12 +3,13 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../utils/constants";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   //  const [resInfo, setResInfo] = useState(null);
   const { resId } = useParams();
 
-  console.log(resId);
+  //  console.log(resId);
 
   const resInfo = useRestaurantMenu(resId);
 
@@ -44,16 +45,39 @@ const RestaurantMenu = () => {
   // Check if itemCards is undefined or null, and fallback to an empty array
   const safeItemCards = itemCards || [];
 
-  console.log(safeItemCards);
+  // console.log(safeItemCards);
+
+  console.log(resInfo.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+
+  const categories =
+    resInfo.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+
+  console.log(categories);
 
   return (
-    <div className="menu">
-      <h1>{name}</h1>
-      <h2>{costForTwoMessage}</h2>
-      <p>
+    <div className="text-center">
+      <h1 className="font-bold my-6 text-2xl">{name}</h1>
+      <div className="w-6/12 mx-auto my-4 p-4 flex justify-between font-bold bg-green-50 rounded-lg text-lg">
+        <span className="underline font-extrabold font-serif">
+          {cuisines.join(", ")}
+        </span>
+        <span>🌾{avgRating}</span>
+        <span>{costForTwoMessage}</span>
+      </div>
+      {/* <p className="font-bold">
         {cuisines.join(", ")} - {avgRating}
-      </p>
-      <h2>{avgRating}</h2>
+      </p> */}
+
+      {categories.map((category) => (
+        <RestaurantCategory
+          key={category?.card?.card?.title}
+          data={category?.card?.card}
+        />
+      ))}
 
       <ul>
         {safeItemCards.map((item) => (

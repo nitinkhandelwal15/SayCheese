@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withOpenLabel } from "./RestaurantCard";
 import resObj from "../utils/mockdata";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
@@ -97,6 +97,10 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantCardOpen = withOpenLabel(RestaurantCard);
+
+  console.log(restaurantList);
 
   useEffect(() => {
     fetchData();
@@ -256,9 +260,20 @@ const Body = () => {
       </div>
 
       <div className="flex flex-wrap">
-        {filteredRestaurant.map((e) => (
-          <Link key={e.info.id} to={"/restaurants/" + e.info.id}>
-            <RestaurantCard resData={e} />
+        {filteredRestaurant.map((restaurant) => (
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.info.id}
+          >
+            {
+              /* if restaurant is open, add open label to the restaurant card */
+
+              restaurant.info.isOpen ? (
+                <RestaurantCardOpen resData={restaurant} />
+              ) : (
+                <RestaurantCard resData={restaurant} />
+              )
+            }
           </Link>
         ))}
       </div>
