@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class UserClass extends React.Component {
   constructor(props) {
@@ -26,22 +27,23 @@ class UserClass extends React.Component {
     console.log(json);
   }
 
-  componentDidUpdate() {
-    console.log("component did update");
-  }
+  // componentDidUpdate() {
+  //   console.log("component did update");
+  // }
 
-  componentWillUnmount() {
-    console.log("component unmount was called");
-  }
+  // componentWillUnmount() {
+  //   console.log("component unmount was called");
+  // }
 
   render() {
     const { count0, count2 } = this.state;
     //  const { name, location } = this.props;
-    const { name, location, avatar_url } = this.state.userInfo;
+    console.log(this.state.userInfo);
+    const { name, location, avatar_url, html_url } = this.state.userInfo;
 
     return (
-      <div className="user-card">
-        <img src={avatar_url} />
+      <div className="py-10 user-card">
+        <img className="w-15 cursor-pointer" src={avatar_url} />
         <h2>Name : {name}</h2>
         <h2>location : {location}</h2>
         <h3>Component type : class based</h3>

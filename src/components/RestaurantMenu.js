@@ -13,6 +13,8 @@ const RestaurantMenu = () => {
 
   const resInfo = useRestaurantMenu(resId);
 
+  const [showIndex, setShowIndex] = useState(null);
+
   // useEffect(() => {
   //   fetchMenu();
   // }, []);
@@ -47,7 +49,7 @@ const RestaurantMenu = () => {
 
   // console.log(safeItemCards);
 
-  console.log(resInfo.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+  //  console.log(resInfo.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
 
   const categories =
     resInfo.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
@@ -56,7 +58,7 @@ const RestaurantMenu = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
-  console.log(categories);
+  //  console.log(categories);
 
   return (
     <div className="text-center">
@@ -72,23 +74,16 @@ const RestaurantMenu = () => {
         {cuisines.join(", ")} - {avgRating}
       </p> */}
 
-      {categories.map((category) => (
+      {categories.map((category, index) => (
         <RestaurantCategory
           key={category?.card?.card?.title}
           data={category?.card?.card}
+          showItems={index === showIndex ? true : false}
+          setShowIndex={() =>
+            setShowIndex((prevIndex) => (prevIndex === index ? null : index))
+          }
         />
       ))}
-
-      <ul>
-        {safeItemCards.map((item) => (
-          <li key={item.card.info.id}>
-            {item.card.info.name} -{" "}
-            {item.card.info.defaultPrice / 100 ||
-              item.card.info.finalPrice / 100 ||
-              item.card.info.price / 100}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
