@@ -260,12 +260,15 @@ const Body = () => {
         >
           Top Rated Restaurant
         </button>
-        <label className="py-2">Username :</label>
-        <input
-          className=" border border-solid border-black-600 p-2 text-gray-400 rounded-lg bg-gray-50"
-          value={loggedInUser}
-          onChange={(e) => setUserName(e.target.value)}
-        />
+
+        <div>
+          <label>Username :</label>
+          <input
+            className=" border border-solid border-black-600 p-2 text-gray-400 rounded-lg bg-gray-50"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
 
       <div className="flex flex-wrap">
