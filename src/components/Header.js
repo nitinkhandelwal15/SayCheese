@@ -18,8 +18,10 @@ export const Header = () => {
 
   return (
     <div className="flex justify-between  bg-yellow-50 md:bg-orange-100 shadow-lg m-2 rounded-lg sm:bg-green-50">
-      <div className="logo-container">
-        <img className="w-40" src={LOGO_URL} />
+      <div className="logo-container cursor-pointer">
+        <Link to="/">
+          <img className="w-30 rounded-ee-4xl rounded-tr-4xl" src={LOGO_URL} />
+        </Link>
       </div>
 
       <div className="nav-items flex items-center">
